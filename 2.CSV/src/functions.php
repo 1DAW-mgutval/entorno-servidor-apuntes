@@ -1,10 +1,12 @@
 <?php
 
+// Función debug
 function dump($dump)
 {
     echo "<pre>" . $dump . "</pre>";
 }
 
+// Pasar CSV a Array
 function CSVtoArray(String $rutaCSV)
 {
     $archivo = file_get_contents($rutaCSV);
@@ -20,6 +22,7 @@ function CSVtoArray(String $rutaCSV)
     return $nuevos;
 }
 
+// Mirar si el índice del array que se quiere es el correcto
 function indiceCorrecto(array $array, String $indice)
 {
     foreach ($array as $actual) {
@@ -30,6 +33,7 @@ function indiceCorrecto(array $array, String $indice)
     return false;
 }
 
+// Pasar CSV a Array con el índice deseado
 function CSVtoArrayConIndice(String $rutaCSV, String $indice)
 {
     $archivo = file_get_contents($rutaCSV);

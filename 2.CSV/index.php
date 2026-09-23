@@ -1,7 +1,7 @@
 <?php
 include('src/functions.php');
 
-/////////////////////////////////////// SOLUCIONES DE BAJO NIVEL
+//----------------------------------------------------------------------------- SOLUCIONES DE BAJO NIVEL
 
 // $fp = fopen("src/coches.csv", "r");
 // $coches = [];
@@ -28,7 +28,7 @@ include('src/functions.php');
 
 
 
-////////////////////////////////// SOLUCIONES DE ALTO NIVEL
+//----------------------------------------------------------------------------- SOLUCIONES DE ALTO NIVEL
 
 // $coches = CSVtoArray('data_source/coches.csv');
 
@@ -41,7 +41,7 @@ include('src/functions.php');
 
 
 
-///////////////////////////////////////////////////////////// Pedir índice
+//----------------------------------------------------------------------------- Pedir índice
 
 $coches = CSVtoArrayConIndice('data_source/coches.csv', 'modelo');
 dump(print_r($coches, true));
