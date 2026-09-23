@@ -1,4 +1,5 @@
 <?php
+include('src/functions.php');
 
 /////////////////////////////////////// SOLUCIONES DE BAJO NIVEL
 
@@ -23,10 +24,24 @@
 
 
 
+
+
+
+
 ////////////////////////////////// SOLUCIONES DE ALTO NIVEL
 
-include('src/functions.php');
+// $coches = CSVtoArray('data_source/coches.csv');
 
-$coches = CSVtoArray('data_source/coches.csv');
+// dump(print_r($coches, true));
 
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////// Pedir índice
+
+$coches = CSVtoArrayConIndice('data_source/coches.csv', 'modelo');
 dump(print_r($coches, true));
