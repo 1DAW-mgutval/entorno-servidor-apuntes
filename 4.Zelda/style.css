@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    margin-left: 30%;
+}
+
+.fondo{
+    margin-left: 30%;
+    height: 32rem;
+    width: 32rem;
+    background-color: black;
+    display: flex;
+}
+
+.tile {
+    height: 16px;
+    width: 16px;
+}
+
+.grass {
+    background-image: url(tiles/tiles.png);
+    background-repeat: no-repeat;
+    background-position-x:  -86px;
+    background-position-y: -86px;
+}
+
+.stone {
+    background-image: url(tiles/tiles.png);
+    background-repeat: no-repeat;
+    background-position-x:  -52px;
+    background-position-y: -86px;
+}
+
+.water {
+    background-image: url(tiles/tiles.png);
+    background-repeat: no-repeat;
+    background-position-x:  -18px;
+    background-position-y: -35px;
+}
+
+.bridge {
+    background-image: url(tiles/tiles.png);
+    background-repeat: no-repeat;
+    background-position-x:  -1px;
+    background-position-y: -1px;
+}

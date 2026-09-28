@@ -55,7 +55,7 @@ function arrayToTable($data)
     $output .= '<tr>';
     foreach ($data[array_keys($data)[0]] as $key => $value) {
         $output .= '<th>';
-        $output .= $key;
+        $output .= htmlspecialchars($key);
         $output .= '</th>';
     }
     $output .= '</tr>';
@@ -66,14 +66,14 @@ function arrayToTable($data)
             if ($clave === 'img') {
                 $output .= '<td>';
                 if ($value !== '') {
-                    $output .= '<img src="' . $value . '">';
+                    $output .= '<img src="' . htmlspecialchars($value) . '">';
                 } else {
                     $output .= '<img src="src\img\default.png">';
                 }
                 $output .= '</td>';
             } else {
                 $output .= '<td>';
-                $output .= $value;
+                $output .= htmlspecialchars($value);
                 $output .= '</td>';
             }
         }
