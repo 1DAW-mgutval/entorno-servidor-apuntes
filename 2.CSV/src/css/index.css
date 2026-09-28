@@ -1,0 +1,46 @@
+/* Estilos generales de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: system-ui, -apple-system, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.203);
+    border-radius: 8px;
+    overflow: hidden;
+    /* Mantiene los bordes redondeados en la cabecera */
+}
+
+/* Espaciado y alineación de celdas */
+th,
+td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid #797979;
+    vertical-align: middle;
+    /* Centra el texto verticalmente con la imagen */
+}
+
+/* Estilo de la cabecera */
+th {
+    background-color: #2b3a4a;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* Efecto hover en las filas */
+tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+/* Estilo para las fotos de la última columna */
+td img {
+    width: auto;
+    /* Cambia este valor para hacerla más ancha */
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border: 2px solid #e0e0e0;
+}
