@@ -15,6 +15,7 @@ h1 {
     width: 32rem;
     background-color: black;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .tile {
