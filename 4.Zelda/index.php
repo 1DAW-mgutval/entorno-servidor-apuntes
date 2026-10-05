@@ -19,21 +19,29 @@ $tiles2 = [
 $mapa = [];
 
 
-for ($i = 0; $i < 32; $i++) {
-    $fila = [];
-    for ($j = 0; $j < 32; $j++) {
-        if (prev($fila) === 'water') {
-            $fila[$j] = $tiles2[rand(0, 2)];
-        } else if (prev($fila) === 'grass') {
-            $fila[$j] = $tiles1[rand(0, 2)];
-        } else {
-            $fila[$j] = $tiles1[rand(0, 1)];
-        }
-    }
-    $mapa[$i] = $fila;
-}
+// for ($i = 0; $i < 32; $i++) {
+//     $fila = [];
+//     for ($j = 0; $j < 32; $j++) {
+//         if (prev($fila) === 'water') {
+//             $fila[$j] = $tiles2[rand(0, 2)];
+//         } else if (prev($fila) === 'grass') {
+//             $fila[$j] = $tiles1[rand(0, 2)];
+//         } else {
+//             $fila[$j] = $tiles1[rand(0, 1)];
+//         }
+//     }
+//     $mapa[$i] = $fila;
+// }
 
-function pintarMapa(array $mapaZelda) {
+$mapa = [];
+$f = fopen("tablero.csv", "r");
+while (($linea = fgetcsv($f)) !== false) {
+    $mapa[] = $linea;
+}
+fclose($f);
+
+function pintarMapa(array $mapaZelda)
+{
     $res = '';
     foreach ($mapaZelda as $fila => $columna) {
         foreach ($columna as $numColumna => $tile) {

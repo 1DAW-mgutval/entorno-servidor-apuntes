@@ -11,7 +11,7 @@
 <body>
     <h1>The Legend of Zelda: A link to PHP</h1>
     <div class="fondo">
-        <?php /** @var String $mapa */ ?>
+        <?php /** @var array $mapa */ ?>
         <?php echo pintarMapa($mapa) ?>
     </div>
     
