@@ -50,3 +50,8 @@ h1 {
     background-position-x:  -1px;
     background-position-y: -1px;
 }
+
+.link {
+    background-image: url(tiles/link.png);
+    background-repeat: no-repeat;
+}

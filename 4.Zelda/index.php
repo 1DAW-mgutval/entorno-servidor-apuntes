@@ -1,7 +1,9 @@
 <?php
 function dump($dump)
 {
-    echo "<pre>" . $dump . "</pre>";
+    echo "<pre>";
+    var_dump($dump);
+    echo "</pre>";
 }
 
 // Poner array bien con tamaño
@@ -63,5 +65,19 @@ function pintarMapa(array $mapaZelda)
     }
     return $res;
 }
+
+$filtro = [
+    'options' => [
+        'min_range' => 0,
+        'max_range' => 31
+    ]
+];
+
+$link = [
+    'x' => filter_input(INPUT_GET, 'link_pos_x', FILTER_VALIDATE_INT, $filtro),
+    'y' => filter_input(INPUT_GET, 'link_pos_y', FILTER_VALIDATE_INT, $filtro)
+];
+
+dump($link);
 
 include('index.tpl.php');
