@@ -16,6 +16,7 @@ h1 {
     background-color: black;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .tile {
@@ -49,9 +50,4 @@ h1 {
     background-repeat: no-repeat;
     background-position-x:  -1px;
     background-position-y: -1px;
-}
-
-.link {
-    background-image: url(tiles/link.png);
-    background-repeat: no-repeat;
 }

@@ -6,6 +6,18 @@ function dump($dump)
     echo "</pre>";
 }
 
+$filtro = [
+    'options' => [
+        'min_range' => 0,
+        'max_range' => 31
+    ]
+];
+
+$link = [
+    'x' => filter_input(INPUT_GET, 'link_pos_x', FILTER_VALIDATE_INT, $filtro),
+    'y' => filter_input(INPUT_GET, 'link_pos_y', FILTER_VALIDATE_INT, $filtro)
+];
+
 // Poner array bien con tamaño
 $tiles1 = [
     'grass',
@@ -42,7 +54,7 @@ while (($linea = fgetcsv($f)) !== false) {
 }
 fclose($f);
 
-function pintarMapa(array $mapaZelda)
+function generarMapa(array $mapaZelda)
 {
     $res = '';
     foreach ($mapaZelda as $fila => $columna) {
@@ -65,19 +77,5 @@ function pintarMapa(array $mapaZelda)
     }
     return $res;
 }
-
-$filtro = [
-    'options' => [
-        'min_range' => 0,
-        'max_range' => 31
-    ]
-];
-
-$link = [
-    'x' => filter_input(INPUT_GET, 'link_pos_x', FILTER_VALIDATE_INT, $filtro),
-    'y' => filter_input(INPUT_GET, 'link_pos_y', FILTER_VALIDATE_INT, $filtro)
-];
-
-dump($link);
 
 include('index.tpl.php');
