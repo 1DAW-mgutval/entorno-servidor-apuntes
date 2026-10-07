@@ -8,7 +8,7 @@ function dump($dump)
 
 $filtro = [
     'options' => [
-        'min_range' => 0,
+        'min_range' => 1,
         'max_range' => 31
     ]
 ];
