@@ -11,9 +11,13 @@
     <ul>
     <?php /** @var array $familia */ ?>
     <?php foreach ($familia as $key => $value) {
-        echo '<ul>';
-        echo '<li>'.$value.'</li>';
-    } ?>
+        echo '<ul><li>';
+        foreach ($value as $clave => $valor) {
+            echo $valor.' ';
+        }
+        echo '</li></ul>';
+    } 
+    ?>
     </ul>
 </body>
 

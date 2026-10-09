@@ -30,7 +30,7 @@ try {
     if ($deseado !== null) {
         $familia = $dbh->query('SELECT * FROM familia WHERE nombre = "'.$deseado.'"')->fetchAll();
     }
-    var_dump($familia);
 } catch (Exception $e) {
     echo 'No se ha encontrado ese nombre';
 }
+include('index.tpl.php');
