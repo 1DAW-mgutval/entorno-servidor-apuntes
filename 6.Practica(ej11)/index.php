@@ -11,7 +11,8 @@ function dump($dump)
 }
 
 
-function getReservas() {
+function getReservas()
+{
     $res = null;
     $f = fopen("datos/reservas.csv", "r");
     while (($linea = fgetcsv($f)) !== false) {
@@ -21,8 +22,15 @@ function getReservas() {
     return $res;
 }
 
-function filtrarPor($reservas, $buscarPor) {
+function filtrarPor($reservas, $buscarPor)
+{
     $buscador = filter_input(INPUT_GET, $buscarPor);
+    if ($buscador === '') {
+        return [];
+    }
+    if ($buscarPor === 'fecha') {
+        $buscador = substr($buscador, -2) . '-' . substr($buscador, -5, 2) . '-' . substr($buscador, -10, 4);
+    }
     $res = $reservas[0];
     $indice = 0;
     foreach ($res as $key => $valor) {
@@ -41,10 +49,22 @@ function filtrarPor($reservas, $buscarPor) {
     return $res;
 }
 
-// año-mes-dia
-
 $reservas = getReservas();
-$filtradoPorPistas = filtrarPor($reservas, 'pista');
-$filtradoPorFecha = filtrarPor($reservas, 'fecha');
+if (!empty($_GET)) {
+    $filtradoPorPistas = filtrarPor($reservas, 'pista');
+    $filtradoPorFecha = filtrarPor($reservas, 'fecha');
+}
+$ambosFiltros = null;
+if (!empty($filtradoPorFecha) && !empty($filtradoPorPistas)) {
+    foreach ($filtradoPorFecha as $key => $value) {
+        foreach ($filtradoPorPistas as $clave => $valor) {
+            if ($value === $valor) {
+                $ambosFiltros[] = $valor;
+            }
+        }
+    }
+}
+
+
 
 include('index.tpl.php');
