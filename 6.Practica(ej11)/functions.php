@@ -69,7 +69,7 @@ function filtrarPor($reservas, $buscarPor)
         }
     }
     $res = array_filter($reservas, function ($reservaActual) use ($buscador, $indice) {
-        if ($reservaActual[$indice] === $buscador) {
+        if (strtolower(str_replace(' ','',$reservaActual[$indice])) === $buscador) {
             return true;
         } else {
             return null;

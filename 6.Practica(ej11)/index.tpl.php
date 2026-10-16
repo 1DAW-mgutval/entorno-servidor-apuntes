@@ -13,14 +13,19 @@
         <?php pintarResultado() ?>
     </table>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET">
-        <label for="pista">Pista:</label>
-        <input type="text" name="pista" placeholder="Nombre de la pista...">
+        <select id="pista" name="pista" for="fecha">
+            <option value="">Selecciona una pista...</option>
+            <option value="padel1">Padel 1</option>
+            <option value="padel2">Padel 2</option>
+            <option value="tenis">Tenis</option>
+            <option value="baloncesto">Baloncesto</option>
+        </select>
         <label for="fecha">Fecha:</label>
         <input type="date" name="fecha">
         <button type="submit">Enviar</button>
     </form>
     <a href="index.php"><button>Limpiar</button></a>
-    
+
 </body>
 
 </html>

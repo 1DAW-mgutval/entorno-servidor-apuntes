@@ -1,4 +1,15 @@
-<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+
+<body>
+    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
         <!-- Nombre -->
         <div>
             <label for="nombre">Nombre:</label>
@@ -57,7 +68,7 @@
         <!-- Normas -->
         <div>
             <input type="checkbox" id="normas" name="normas" required>
-            <label for="normas">Acepto las normas de la instalación</label>
+            <label for="normas">Acepto las normas</label>
         </div>
         <br>
 
@@ -66,3 +77,6 @@
             <button type="submit">Enviar</button>
         </div>
     </form>
+
+</body>
+</html>
