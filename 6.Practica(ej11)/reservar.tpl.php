@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <?php mostrarMensajeReserva(); ?>
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
         <!-- Nombre -->
         <div>
@@ -29,10 +30,10 @@
             <label for="pista">Pista:</label>
             <select id="pista" name="pista" required>
                 <option value="">Selecciona una pista...</option>
-                <option value="padel1">Padel 1</option>
-                <option value="padel2">Padel 2</option>
-                <option value="tenis">Tenis</option>
-                <option value="baloncesto">Baloncesto</option>
+                <option value="Padel 1">Padel 1</option>
+                <option value="Padel 2">Padel 2</option>
+                <option value="Tenis">Tenis</option>
+                <option value="Baloncesto">Baloncesto</option>
             </select>
         </div>
         <br>
@@ -59,9 +60,9 @@
         <!-- Material -->
         <div>
             <label>Material (opcional):</label><br>
-            <input type="checkbox" id="mat_raquetas" name="material" value="raquetas"> <label for="mat_raquetas">Raquetas</label><br>
-            <input type="checkbox" id="mat_balon" name="material" value="balon"> <label for="mat_balon">Balón</label><br>
-            <input type="checkbox" id="mat_petos" name="material" value="petos"> <label for="mat_petos">Petos</label><br>
+            <input type="checkbox" id="mat_raquetas" name="material[]" value="raquetas"> <label for="mat_raquetas">Raquetas</label><br>
+            <input type="checkbox" id="mat_balon" name="material[]" value="balon"> <label for="mat_balon">Balón</label><br>
+            <input type="checkbox" id="mat_petos" name="material[]" value="petos"> <label for="mat_petos">Petos</label><br>
         </div>
         <br>
 
@@ -77,6 +78,7 @@
             <button type="submit">Enviar</button>
         </div>
     </form>
-
+    <a href="index.php"><button><- Volver</button></a>
 </body>
+
 </html>
