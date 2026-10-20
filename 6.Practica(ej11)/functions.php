@@ -132,23 +132,37 @@ function pintarResultado()
 }
 
 
-/************************************************************** Funciones de Reservas *******************************************************************/
+/**************************************** Funciones de Reservas ********************************************************/
 
 // Devuelve los datos de la reserva filtrados.
 function recogerDatosReserva()
 {
-    $res = $_POST;
-    foreach ($res as $campo => $valor) {
-        if ($campo == 'material') {
-            foreach ($valor as $clave => $value) {
-                $valor[$clave] = htmlspecialchars($value);
-            }
-        } else {
-            $res[$campo] = htmlspecialchars($valor);
-            if ($campo === 'fecha') {
-                $res[$campo] = formatearFechaHTML($valor);
+    $res = null;
+    if (isset($_POST) && !empty($_POST)) {
+        $res = $_POST;
+        foreach ($res as $campo => $valor) {
+            if ($campo == 'material') {
+                foreach ($valor as $clave => $value) {
+                    $valor[$clave] = htmlspecialchars($value);
+                }
+            } else {
+                $res[$campo] = htmlspecialchars($valor);
+                if ($campo === 'fecha') {
+                    $res[$campo] = formatearFechaHTML($valor);
+                }
             }
         }
+    } else {
+        $res = [
+        'id' => '',
+        'nombre'   => '',
+        'email'    => '',
+        'pista'    => '',
+        'fecha'    => '',
+        'hora'     => '',
+        'material' => '',
+        'normas'   => ''
+    ];
     }
     return $res;
 }
@@ -187,10 +201,20 @@ function reservaExistente()
     }
 }
 
+// Miro el id que tiene la última reserva que se ha hecho
+function recogerÚltimoId()
+{
+    $id = getReservas();
+    $id = array_pop($id)[0];
+    return $id;
+}
+
 // Guarda la reserva en el csv. Si se ha guardado bien devuelve true, sino devuelve false.
 function guardarReserva($nuevaReserva)
 {
+    $id = recogerÚltimoId() + 1;
     $reservaFinal = [
+        'id' => $id,
         'nombre'   => $nuevaReserva['nombre'],
         'email'    => $nuevaReserva['email'],
         'pista'    => $nuevaReserva['pista'],
@@ -222,8 +246,23 @@ function mostrarMensajeReserva()
             if (!guardarReserva(recogerDatosReserva())) {
                 echo '<h2>LA RESERVA NO EXISTE PERO HA HABIDO UN ERROR</h2>';
             } else {
-                echo '<h2>RESERVA EXITOSA</h2>';
+                http_response_code(303);
+                header("Location: ./confirmacion.php?id=" . recogerÚltimoId());
             }
         }
     }
+}
+
+/**************************************** Funciones de Confirmación ********************************************************/
+function mensajeReservaCorrecta()
+{
+    $ultimaReserva = getReservas();
+    $campos = array_shift($ultimaReserva);
+    $ultimaReserva = array_pop($ultimaReserva);
+    $output = '<h2>Reserva con id ' . array_shift($ultimaReserva) . ' hecha con éxito</h2><ul>';
+    foreach ($ultimaReserva as $campo => $valor) {
+        $output .= '<li>' . $campos[$campo + 1] . ': ' . $valor . '</li>';
+    }
+    $output .= '</ul>';
+    return $output;
 }

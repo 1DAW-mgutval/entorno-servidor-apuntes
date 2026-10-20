@@ -1,12 +1,13 @@
-nombre,email,pista,fecha,hora,material,normas
-mario,mario@gmail.com,Padel 1,11-10-2026,16:00,raqueta,aceptado
-lucia,lucia88@hotmail.com,Tenis,12-10-2026,17:00,"raqueta, balon",aceptado
-carlos,carlos_dev@gmail.com,Baloncesto,13-10-2026,20:00,balon,no aceptado
-ana,ana.martinez@empresa.es,Padel 2,14-10-2026,21:00,ninguno,aceptado
-david,david.gamer@yahoo.com,Baloncesto,14-10-2026,18:00,balon,no aceptado
-elena,elenita_99@gmail.com,Tenis,15-10-2026,17:00,ninguno,aceptado
-jorge,jorge.lopez@outlook.com,Padel 1,15-10-2026,19:00,raquetas,no aceptado
-sara,sara_fit@gmail.com,Padel 2,16-10-2026,19:00,ninguno,aceptado
-pablo,pablo.ruiz@gmail.com,Baloncesto,17-10-2026,21:00,"petos, balon",aceptado
-marta,marta_g@hotmail.com,Padel 1,18-10-2026,16:00,raqueta,no aceptado
-Mario,mr.zanahorio07@gmail.com,"Padel 1",11-10-2026,17:00,"raquetas, balon, petos",aceptado
+id,nombre,email,pista,fecha,hora,material,normas
+1,mario,mario@gmail.com,Padel 1,11-10-2026,16:00,raqueta,aceptado
+2,lucia,lucia88@hotmail.com,Tenis,12-10-2026,"17:00","raqueta, balon",aceptado
+3,carlos,carlos_dev@gmail.com,Baloncesto,13-10-2026,20:00,balon,aceptado
+4,ana,ana.martinez@empresa.es,Padel 2,14-10-2026,21:00,ninguno,aceptado
+5,david,david.gamer@yahoo.com,Baloncesto,14-10-2026,18:00,balon,aceptado
+6,elena,elenita_99@gmail.com,Tenis,15-10-2026,17:00,ninguno,aceptado
+7,jorge,jorge.lopez@outlook.com,Padel 1,15-10-2026,19:00,raquetas,aceptado
+8,sara,sara_fit@gmail.com,Padel 2,16-10-2026,19:00,ninguno,aceptado
+9,pablo,pablo.ruiz@gmail.com,Baloncesto,17-10-2026,"21:00","petos, balon",aceptado
+10,marta,marta_g@hotmail.com,Padel 1,18-10-2026,16:00,raqueta,aceptado
+11,Mario,"mr.zanahorio07@gmail.com",Padel 1,11-10-2026,"17:00","raquetas, balon, petos",aceptado    
+12,mgutval,mgutval@g.educaand.es,"Padel 1",20-10-2026,16:00,raquetas,aceptado
