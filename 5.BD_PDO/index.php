@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 try {
     $dbh = new PDO(
         'mysql:host=localhost;dbname=dwes;charset=utf8mb4', // DSN
-        'dwes', // usuario
+        'root', // usuario
         'abc123.', // contraseña
         [ // opciones
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
