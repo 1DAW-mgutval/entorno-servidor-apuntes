@@ -63,7 +63,11 @@ function validarFiltro()
 {
     if (isset($_GET) && !empty($_GET)) {
         if (array_key_exists('pista', $_GET)) {
-            if (empty($_GET['pista']) || !in_array($_GET['pista'], ['Padel 1', 'Padel 2', 'Tenis', 'Baloncesto'])) {
+            if (!empty($_GET['pista']) && in_array($_GET['pista'], ['Padel 1', 'Padel 2', 'Tenis', 'Baloncesto'])) {
+                if ($_GET['pista']) {
+                //    Ver si es diferente de tenis, padel, baloncesto...
+                }
+            } else {
                 unset($_GET['pista']);
             }
         }
