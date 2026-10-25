@@ -21,6 +21,7 @@
         <input type="date" name="fecha">
         <button type="submit">Enviar</button>
     </form>
+    <a href="reservar.php"><button>Reservar</button></a>
     <table>
         <?php $reservas = recogerReservas(); ?>
         <!-- Miro si hay reservas -->

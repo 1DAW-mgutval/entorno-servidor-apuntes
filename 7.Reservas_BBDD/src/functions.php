@@ -80,3 +80,34 @@ function validarFiltro()
     }
     return [];
 }
+
+// Recoge los datos del formulario del usuario:
+function recogerDatosReserva()
+{
+    $res = [
+        'id' => '',
+        'nombre'   => '',
+        'email'    => '',
+        'pista'    => '',
+        'fecha'    => '',
+        'hora'     => '',
+        'material' => '',
+        'normas'   => ''
+    ];
+    if (isset($_POST) && !empty($_POST)) {
+        $res = $_POST;
+        foreach ($res as $campo => $valor) {
+            if ($campo == 'material') {
+                foreach ($valor as $clave => $value) {
+                    $valor[$clave] = htmlspecialchars($value);
+                }
+            } else {
+                $res[$campo] = htmlspecialchars($valor);
+                if ($campo === 'fecha') {
+                    $res[$campo] = $valor;
+                }
+            }
+        }
+    }
+    return $res;
+}
