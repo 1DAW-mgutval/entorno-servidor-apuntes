@@ -7,15 +7,15 @@
     <title>Zelda</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<?php /** @var Array $link */ ?>
+<?php /** @var Array $_SESSION */ ?>
 <style>
     .link {
         background-image: url(tiles/link.png);
         background-repeat: no-repeat;
         background-size: 16px;
         position: absolute;
-        left: <?= $link['x'] . 'rem' ?>;
-        top: <?= $link['y'] . 'rem' ?>;
+        left: <?= $_SESSION['link-x'] . 'rem' ?>;
+        top: <?= $_SESSION['link-y'] . 'rem' ?>;
     }
 </style>
 
@@ -28,10 +28,19 @@
     </div>
 
     <div class="controls">
-        <a href="?link_pos_x=<?= $link['x']; ?>&link_pos_y=<?= $link['y']-1; ?>">Arriba</a>
-        <a href="?link_pos_x=<?= $link['x']; ?>&link_pos_y=<?= $link['y']+1; ?>">Abajo</a>
-        <a href="?link_pos_x=<?= $link['x']-1; ?>&link_pos_y=<?= $link['y']; ?>">Izquierda</a>
-        <a href="?link_pos_x=<?= $link['x']+1; ?>&link_pos_y=<?= $link['y']; ?>">Derecha</a>
+        <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+            <button type="submit" name="arriba" value="true">Arriba</button>
+
+            <button type="submit" name="abajo" value="true">Abajo</button>
+
+            <button type="submit" name="izquierda" value="true">Izquierda</button>
+
+            <button type="submit" name="derecha" value="true">Derecha</button>
+        </form>
+        <a href="?link_pos_x=<?= $_SESSION['link-x']; ?>&link_pos_y=<?= $_SESSION['link-y'] - 1; ?>"><button>Arriba</button></a>
+        <a href="?link_pos_x=<?= $_SESSION['link-x']; ?>&link_pos_y=<?= $_SESSION['link-y'] + 1; ?>"><button>Abajo</button></a>
+        <a href="?link_pos_x=<?= $_SESSION['link-x'] - 1; ?>&link_pos_y=<?= $_SESSION['link-y']; ?>"><button>Izquierda</button></a>
+        <a href="?link_pos_x=<?= $_SESSION['link-x'] + 1; ?>&link_pos_y=<?= $_SESSION['link-y']; ?>"><button>Derecha</button></a>
     </div>
 
 </body>

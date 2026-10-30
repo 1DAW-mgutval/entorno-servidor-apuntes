@@ -6,6 +6,31 @@ function dump($dump)
     echo "</pre>";
 }
 
+session_start();
+
+if (!isset($_SESSION['link-x']) && !isset($_SESSION['link-y'])) {
+    $_SESSION['link-x'] = 0;
+    $_SESSION['link-y'] = 0;
+} else {
+    if (!empty($_POST)) {
+        if ($_POST['arriba'] == 'true') {
+            $_SESSION['link-y']--;
+        } else if ($_POST['abajo'] == 'true') {
+            $_SESSION['link-y'] = $_SESSION['link-y'] + 1;
+        } else if ($_POST['izquierda'] == 'true') {
+            $_SESSION['link-x'] = $_SESSION['link-x'] - 1;
+        } else if ($_POST['derecha'] == 'true') {
+            $_SESSION['link-x']++;
+        }
+    }
+
+    http_response_code(301);
+    header("Location: ?link_pos_x=" . $_SESSION['link-x'] . "&link_pos_y=" . $_SESSION['link-y']);
+}
+
+dump($_SESSION);
+dump($_POST);
+
 $filtro = [
     'options' => [
         'min_range' => 1,
@@ -13,12 +38,11 @@ $filtro = [
     ]
 ];
 
-$link = [
-    'x' => filter_input(INPUT_GET, 'link_pos_x', FILTER_VALIDATE_INT, $filtro),
-    'y' => filter_input(INPUT_GET, 'link_pos_y', FILTER_VALIDATE_INT, $filtro)
+$_SESSION = [
+    'link-x' => filter_input(INPUT_GET, 'link_pos_x', FILTER_VALIDATE_INT, $filtro),
+    'link-y' => filter_input(INPUT_GET, 'link_pos_y', FILTER_VALIDATE_INT, $filtro)
 ];
 
-// Poner array bien con tamaño
 $tiles1 = [
     'grass',
     'water',
