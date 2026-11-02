@@ -8,7 +8,6 @@
 </head>
 <body>
     <?php $defecto = recogerDatosReserva() ?>
-    <?php dump($defecto['material']) ?>
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" required value="<?= $defecto['nombre']['valido']? $defecto['nombre']['value']:'' ?>"><br><br>
