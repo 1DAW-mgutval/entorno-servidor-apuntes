@@ -177,11 +177,9 @@ function validarFecha()
     ];
 }
 
-// aRREGLARRRR
 function validarMaterial()
 {
-    dump($_POST);
-    if ($materiales = filter_input(INPUT_POST, 'material')) {
+    if ($materiales = filter_input(INPUT_POST, 'material',FILTER_DEFAULT , FILTER_REQUIRE_ARRAY)) {
         foreach ($materiales as $key => $materialActual) {
             if (!in_array($materialActual, ['balon', 'petos', 'raqueta'])) {
                 return [
@@ -235,4 +233,8 @@ function validarNormas_Aceptadas()
         'mensaje' => 'Debe aceptar las normas',
         'value' => $normas_aceptadas
     ];
+}
+
+function hacerReserva() {
+    
 }
