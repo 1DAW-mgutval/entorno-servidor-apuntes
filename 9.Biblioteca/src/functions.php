@@ -10,9 +10,9 @@ function conectarBaseDeDatos()
 {
     try {
         $pdo = new PDO(
-            'mysql:host=localhost;dbname=biblioteca;charset=utf8mb4',
+            'mysql:host=db;dbname=biblioteca;charset=utf8mb4',
             'root',
-            'abc123.'
+            'root'
         );
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
