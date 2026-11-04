@@ -2,4 +2,4 @@
 include('src/functions.php');
 include('templates/index.tpl.php');
 
-dump(contarDisponibles(conectarBaseDeDatos()));
+dump(obtenerLibro(conectarBaseDeDatos(), 10));
