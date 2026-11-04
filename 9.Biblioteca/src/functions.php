@@ -32,7 +32,8 @@ function contarDisponibles(PDO $pdo)
     return $statement->fetchColumn();
 }
 
-function obtenerLibro(PDO $pdo, int $id) {
+function obtenerLibro(PDO $pdo, int $id)
+{
     $statement = $pdo->prepare("SELECT * FROM libros WHERE id = ?");
     $statement->execute([$id]);
     $statement = $statement->fetch();
@@ -42,3 +43,30 @@ function obtenerLibro(PDO $pdo, int $id) {
         return false;
     }
 }
+
+function listarLibros(PDO $pdo, ?string $genero = null): array
+{
+    if ($genero == null) {
+        return $pdo->query('SELECT * FROM libros ORDER BY genero')->fetchAll();
+    } else {
+        $statement = $pdo->prepare('SELECT * FROM libros WHERE genero = ?');
+        $statement->execute([$genero]);
+        return $statement->fetchAll();
+    }
+}
+
+function obtenerGenero()
+{
+    if (isset($_GET) && !empty($_GET) && isset($_GET['genero'])) {
+        return htmlspecialchars($_GET['genero']);
+    }
+    return null;
+}
+
+// function insertarLibro(PDO $pdo, array $datos): int {
+//     try {
+//         //code...
+//     } catch (\Throwable $th) {
+//         //throw $th;
+//     }
+// }
