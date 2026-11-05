@@ -41,6 +41,12 @@
                 <?php foreach ($libroActual as $header => $campo): ?>
                     <?php if ($header == 'titulo'): ?>
                         <?php echo '<td><a href=ficha.php?id=' . $libroActual['id'] . '>' . htmlspecialchars($campo) . '</a></td>' ?>
+                    <?php elseif ($header == 'disponible'): ?>
+                        <?php if ($campo == 1): ?>
+                            <?php echo '<td><form action="./accion.php" method="post"><input type="hidden" name="id" value="' . $libroActual['id'] . '" /><input type="hidden" name="accion" value="prestar" /><input type="submit" value="Prestar"></form></td>'; ?>
+                        <?php else: ?>
+                            <?php echo '<td><form action="./accion.php" method="post"><input type="hidden" name="id" value="' . $libroActual['id'] . '" /><input type="hidden" name="accion" value="devolver" /><input type="submit" value="Devolver"></form></td>'; ?>
+                        <?php endif; ?>
                     <?php else: ?>
                         <?php echo '<td>' . htmlspecialchars($campo) . '</td>'; ?>
                     <?php endif; ?>
