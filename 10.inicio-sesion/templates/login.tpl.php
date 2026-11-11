@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
+    
+
+    <h1>Inicia Sesión:</h1>
     <form action="" method="post">
         <label for="email">Correo:</label>
         <input type="email" name="usuario">
@@ -16,5 +19,7 @@
 
         <input type="submit" value="Enviar">
     </form>
+
+    <a href="./registro.php"><button>Registrarme</button></a>
 </body>
 </html>

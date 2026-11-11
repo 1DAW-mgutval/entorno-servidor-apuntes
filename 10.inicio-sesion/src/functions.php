@@ -22,6 +22,7 @@ function conectDB()
                 \PDO::ATTR_EMULATE_PREPARES   => false,
             ]
         );
+        return $pdo;
     } catch (PDOException $th) {
         return null;
     }
@@ -29,13 +30,11 @@ function conectDB()
 
 function validarRegistro()
 {
-    if (isset($_POST) && !empty($_POST)) {
-        return [
-            'email' => validarEmailSession(),
-            'nombre' => validarNombreSession(),
-            'password' => validarPasswordSession()
-        ];
-    }
+    return [
+        'email' => validarEmailSession(),
+        'nombre' => validarNombreSession(),
+        'password' => validarPasswordSession()
+    ];
 }
 
 function validarEmailSession()
@@ -48,7 +47,7 @@ function validarEmailSession()
         ];
     }
     return [
-        'valid' => false,
+        'valid' => null,
         'value' => ''
     ];
 }
@@ -62,7 +61,7 @@ function validarNombreSession()
         ];
     }
     return [
-        'valid' => false,
+        'valid' => null,
         'value' => ''
     ];
 }
@@ -76,7 +75,35 @@ function validarPasswordSession()
         ];
     }
     return [
-        'valid' => false,
+        'valid' => null,
         'value' => ''
     ];
+}
+
+function registrarUsuario($usuario) {
+    try {
+        $pdo = conectDB();
+        $statment = $pdo->prepare('INSERT INTO usuarios(email, nombre, contrasena) VALUES(?,?,?)');
+        $statment->execute([$usuario['email']['value'],$usuario['nombre']['value'],password_hash($usuario['password']['value'], PASSWORD_DEFAULT)]);
+        return $statment->rowCount();
+    } catch (PDOException $th) {
+        return 0;
+    }
+}
+
+function validarLogin() {
+    return [
+        'email' => validarEmailSession(),
+        'password' => validarPasswordSession()
+    ];
+}
+
+function intentarLogin($usuario) {
+    try {
+        $pdo = conectDB();
+        $statment = $pdo->prepare('SELECT email, contrasena FROM usuarios WHERE email =');
+        $statment->execute([$usuario['email']]);
+    } catch (\Throwable $th) {
+        return false;
+    }
 }

@@ -10,10 +10,14 @@
 
 <body>
     <?php $registro = validarRegistro(); ?>
+    <?php $registrar = true; ?>
 
     <?php foreach ($registro as $clave => $campo): ?>
-        <?php if ($campo['valid'] == false): ?>
+        <?php if ($campo['valid'] === false): ?>
             <?= '<h1>' . $clave . ' NO ES VÁLIDO</h1>' ?>
+            <?php $registrar = false; ?>
+        <?php elseif ($campo['valid'] === null): ?>
+            <?php $registrar = false; ?>
         <?php endif; ?>
     <?php endforeach; ?>
 
@@ -26,10 +30,21 @@
         <input type="text" name="nombre" value="<?= htmlspecialchars($registro['nombre']['value']) ?>">
 
         <label for="password">Contraseña:</label>
-        <input type="password" name="password" value="<?= htmlspecialchars($registro['password']['value']) ?>"><br>
+        <input type="password" name="password"><br>
 
         <input type="submit" value="Enviar">
     </form>
+
+    <a href="./login.php"><button>Iniciar Sesión</button></a>
+
+    <?php if ($registrar === true): ?>
+        <?php $usuarioRegistrado = registrarUsuario($registro); ?>
+        <?php if ($usuarioRegistrado > 0): ?>
+            <?php header('Location: ./login.php') ?>
+        <?php else: ?>
+            <?= '<h1>El usuario ya existe. Use otro email.</h1>' ?>
+        <?php endif; ?>
+    <?php endif; ?>
 </body>
 
 </html>
