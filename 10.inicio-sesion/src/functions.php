@@ -80,29 +80,39 @@ function validarPasswordSession()
     ];
 }
 
-function registrarUsuario($usuario) {
+function registrarUsuario($usuario)
+{
     try {
         $pdo = conectDB();
         $statment = $pdo->prepare('INSERT INTO usuarios(email, nombre, contrasena) VALUES(?,?,?)');
-        $statment->execute([$usuario['email']['value'],$usuario['nombre']['value'],password_hash($usuario['password']['value'], PASSWORD_DEFAULT)]);
+        $statment->execute([$usuario['email']['value'], $usuario['nombre']['value'], password_hash($usuario['password']['value'], PASSWORD_DEFAULT)]);
         return $statment->rowCount();
     } catch (PDOException $th) {
         return 0;
     }
 }
 
-function validarLogin() {
+function validarLogin()
+{
     return [
         'email' => validarEmailSession(),
         'password' => validarPasswordSession()
     ];
 }
 
-function intentarLogin($usuario) {
+function intentarLogin($usuario)
+{
     try {
         $pdo = conectDB();
-        $statment = $pdo->prepare('SELECT email, contrasena FROM usuarios WHERE email =');
-        $statment->execute([$usuario['email']]);
+        $statment = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
+        $statment->execute([$usuario['email']['value']]);
+        $statment = $statment->fetch();
+        if (isset($statment['contrasena']) && !empty($statment['contrasena'])) {
+            if (password_verify($usuario['password']['value'], $statment['contrasena'])) {
+                return $statment;
+            }
+        }
+        return false;
     } catch (\Throwable $th) {
         return false;
     }

@@ -41,6 +41,7 @@
         <?php $usuarioRegistrado = registrarUsuario($registro); ?>
         <?php if ($usuarioRegistrado > 0): ?>
             <?php header('Location: ./login.php') ?>
+            <?php $_SESSION['flash_mensaje'] = 'Registro completado. Ya puedes iniciar sesión.'; ?>
         <?php else: ?>
             <?= '<h1>El usuario ya existe. Use otro email.</h1>' ?>
         <?php endif; ?>
