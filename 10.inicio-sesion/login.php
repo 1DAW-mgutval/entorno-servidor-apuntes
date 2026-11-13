@@ -1,8 +1,6 @@
 <?php
 // contraseña: usuario
-if (!isset($_SESSION)) {
-    session_start();
-}
+session_start();
 
 if (isset($_SESSION['id'])) {
     header('Location: ./bienvenida.php');
@@ -14,6 +12,7 @@ $usuario = validarLogin();
 $login = intentarLogin($usuario);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $login != false) {
+    session_regenerate_id(true);
     $_SESSION['id'] = $login['id'];
     $_SESSION['nombre'] = $login['nombre'];
     header('Location: ./bienvenida.php');
