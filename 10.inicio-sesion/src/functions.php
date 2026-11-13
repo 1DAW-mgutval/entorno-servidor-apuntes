@@ -102,6 +102,13 @@ function validarLogin()
 
 function intentarLogin($usuario)
 {
+    foreach ($usuario as $value) {
+        if ($value['valid'] === null) {
+            return null;
+        } elseif ($value['valid'] === false) {
+            return false;
+        }
+    }
     try {
         $pdo = conectDB();
         $statment = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
