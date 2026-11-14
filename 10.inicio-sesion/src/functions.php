@@ -120,7 +120,34 @@ function intentarLogin($usuario)
             }
         }
         return false;
-    } catch (\Throwable $th) {
+    } catch (PDOException $th) {
         return false;
+    }
+}
+
+function obtenerPreguntasAleatorias() {
+    try {
+        $pdo = conectDB();
+        $pdo = $pdo->query('SELECT id FROM preguntas');
+        $pdo = $pdo->fetchAll();
+        shuffle($pdo);
+        $res = [];
+        foreach ($pdo as $value) {
+            $res[] = $value['id'];
+        }
+        return array_slice($res, 0, 5);
+    } catch (PDOException $th) {
+        return null;
+    }
+}
+
+function obtenerPregunta($idPregunta) {
+    try {
+        $pdo = conectDB();
+        $statment = $pdo->prepare('SELECT enunciado, opcion_a, opcion_b, opcion_c, opcion_d, correcta FROM preguntas WHERE id = ?');
+        $statment->execute([$idPregunta]);
+        return $statment->fetch();
+    } catch (PDOException $th) {
+        return null;
     }
 }
