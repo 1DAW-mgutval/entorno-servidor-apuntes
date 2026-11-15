@@ -144,10 +144,21 @@ function obtenerPreguntasAleatorias() {
 function obtenerPregunta($idPregunta) {
     try {
         $pdo = conectDB();
-        $statment = $pdo->prepare('SELECT enunciado, opcion_a, opcion_b, opcion_c, opcion_d, correcta FROM preguntas WHERE id = ?');
+        $statment = $pdo->prepare('SELECT * FROM preguntas WHERE id = ?');
         $statment->execute([$idPregunta]);
         return $statment->fetch();
     } catch (PDOException $th) {
         return null;
+    }
+}
+
+function respuestaValida($idPregunta, $opcion){
+    try {
+        $pdo = conectDB();
+        $statment = $pdo->prepare('SELECT COUNT(*) FROM preguntas WHERE id = ? AND correcta = ?');
+        $statment->execute([$idPregunta, $opcion]);
+        return $statment->rowCount();
+    } catch (PDOException $th) {
+        return 0;
     }
 }
