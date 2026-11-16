@@ -170,14 +170,26 @@ function guardarResultadosEnBD($resultado)
 {
     try {
         $pdo = conectDB();
-        $statment = $pdo->prepare('INSERT INTO resultados(usuario_id, aciertos, total_preguntas, fecha) VALUES(?,?,5,?)');
+        $statment = $pdo->prepare('INSERT INTO resultados(usuario_id, aciertos, total_preguntas) VALUES(?,?,5)');
         $statment->execute([
             $_SESSION['id'],
-            $resultado,
-            date('d-m-Y')
+            $resultado
         ]);
         return $statment->rowCount();
     } catch (PDOException $th) {
         return 0;
+    }
+}
+
+function historialUsuario() {
+    try {
+        $pdo = conectDB();
+        $statment = $pdo->prepare('SELECT aciertos, total_preguntas, fecha FROM resultados WHERE usuario_id = ? ORDER BY fecha DESC');
+        $statment->execute([
+            $_SESSION['id']
+        ]);
+        return $statment->fetchAll();
+    } catch (PDOException $th) {
+        return null;
     }
 }
