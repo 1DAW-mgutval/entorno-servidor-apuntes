@@ -125,7 +125,8 @@ function intentarLogin($usuario)
     }
 }
 
-function obtenerPreguntasAleatorias() {
+function obtenerPreguntasAleatorias()
+{
     try {
         $pdo = conectDB();
         $pdo = $pdo->query('SELECT id FROM preguntas');
@@ -141,7 +142,8 @@ function obtenerPreguntasAleatorias() {
     }
 }
 
-function obtenerPregunta($idPregunta) {
+function obtenerPregunta($idPregunta)
+{
     try {
         $pdo = conectDB();
         $statment = $pdo->prepare('SELECT * FROM preguntas WHERE id = ?');
@@ -152,11 +154,28 @@ function obtenerPregunta($idPregunta) {
     }
 }
 
-function respuestaValida($idPregunta, $opcion){
+function respuestaCorrecta($idPregunta, $opcion)
+{
     try {
         $pdo = conectDB();
-        $statment = $pdo->prepare('SELECT COUNT(*) FROM preguntas WHERE id = ? AND correcta = ?');
+        $statment = $pdo->prepare('SELECT * FROM preguntas WHERE id = ? AND correcta = ?');
         $statment->execute([$idPregunta, $opcion]);
+        return $statment->rowCount();
+    } catch (PDOException $th) {
+        return 0;
+    }
+}
+
+function guardarResultadosEnBD($resultado)
+{
+    try {
+        $pdo = conectDB();
+        $statment = $pdo->prepare('INSERT INTO resultados(usuario_id, aciertos, total_preguntas, fecha) VALUES(?,?,5,?)');
+        $statment->execute([
+            $_SESSION['id'],
+            $resultado,
+            date('d-m-Y')
+        ]);
         return $statment->rowCount();
     } catch (PDOException $th) {
         return 0;

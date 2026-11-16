@@ -10,7 +10,7 @@ if (!isset($_SESSION['id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['empezar'])) {
     $_SESSION['cuestionario'] = [
         'preguntas' => obtenerPreguntasAleatorias(),
-        'acertadas' => [],
+        'respuestas' => [],
     ];
     $_SESSION['cuestionario']['ultimaPregunta'] = 0;
     header('Location: ./cuestionario.php');

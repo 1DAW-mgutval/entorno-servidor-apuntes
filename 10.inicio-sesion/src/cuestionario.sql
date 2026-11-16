@@ -23,14 +23,14 @@ CREATE TABLE IF NOT EXISTS preguntas (
 
 CREATE TABLE IF NOT EXISTS resultados (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario VARCHAR(100) NOT NULL,
+    usuario_id INT UNSIGNED,
     aciertos INT NOT NULL,
     total_preguntas INT NOT NULL,
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT fk_resultados_usuarios
-        FOREIGN KEY (usuario)
-        REFERENCES usuarios(email)
+    CONSTRAINT fk_resultados_usuarios_id
+        FOREIGN KEY (usuario_id)
+        REFERENCES usuarios(id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 ) ENGINE=InnoDB
