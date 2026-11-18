@@ -31,11 +31,9 @@
 </head>
 
 <body>
-    <?php dump($_POST) ?>
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="palabra">
         <?php foreach (str_split($_SESSION['palabra']) as $key => $value): ?>
-            <label for="<?= $key ?>"></label>
-            <input type="text" name="<?= $key ?>">
+            <input type="text" name="letras[<?= $key ?>]">
         <?php endforeach; ?>
         <input type="submit" value="Adivinar">
     </form>

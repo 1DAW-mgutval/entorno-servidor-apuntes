@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <h1>Has acertado <?= $resultado ?> preguntas</h1>
+    <h1>Has acertado <?= $resultado ?> pregunta/s</h1>
+    <a href="./bienvenida.php"><button>Volver a la bienvenida</button></a>
 </body>
 
 </html>
