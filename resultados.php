@@ -18,7 +18,4 @@ if (!isset($_SESSION['id'])) {
     }
 }
 
-guardarResultadosEnBD($resultado);
-unset($_SESSION['cuestionario']);
-
 include('templates/resultados.tpl.php');
